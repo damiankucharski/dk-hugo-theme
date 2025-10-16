@@ -1,0 +1,74 @@
+baseURL = 'https://example.org/'
+languageCode = 'en-us'
+theme = 'dk-hugo-theme'
+title = "My Site"
+
+# Configure output formats
+[outputs]
+home = ["HTML", "RSS", "searchindex"]
+
+[outputFormats.searchindex]
+baseName = "searchindex"
+mediaType = "application/json"
+isPlainText = true
+
+# Disable built-in syntax highlighting (using highlight.js instead)
+[markup]
+[markup.highlight]
+codeFences = false
+noClasses = false
+
+# Enable LaTeX support
+[markup.goldmark.renderer]
+unsafe = true
+
+# Configure table of contents
+[markup.tableOfContents]
+endLevel = 3
+ordered = false
+startLevel = 2
+
+# Configure menu
+[menu]
+[[menu.main]]
+identifier = "home"
+name = "Home"
+url = "/"
+weight = 1
+
+[[menu.main]]
+identifier = "projects"
+name = "Projects"
+url = "/projects/"
+weight = 2
+
+[[menu.main]]
+identifier = "posts"
+name = "Posts"
+url = "/posts/"
+weight = 3
+
+[[menu.main]]
+identifier = "tags"
+name = "Tags"
+url = "/tags/"
+weight = 4
+
+# Configure taxonomies
+[taxonomies]
+category = "categories"
+tag = "tags"
+
+# Theme parameters
+[params]
+author = "Your Name"
+description = "Personal website description"
+email = "your.email@example.com"
+github = "https://github.com/yourusername"
+linkedin = "https://www.linkedin.com/in/yourusername/"
+# Optional: googlescholar, orcid
+
+[module]
+[module.hugoVersion]
+extended = false
+min = '0.146.0'

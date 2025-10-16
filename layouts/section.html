@@ -1,0 +1,47 @@
+{{ define "main" }}
+  <h1>{{ .Title }}</h1>
+  {{ .Content }}
+  
+  {{ $paginator := .Paginate .Pages }}
+  <div class="post-list">
+    {{ range $paginator.Pages }}
+      <article class="post-item">
+        <h2 class="post-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+        <div class="post-meta">
+          <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
+            {{ .Date.Format "January 2, 2006" }}
+          </time>
+          {{ with .Params.authors }}
+            <span class="post-authors">
+              {{ . }}
+            </span>
+          {{ end }}
+          {{ with .Params.tags }}
+            <span class="post-tags">
+              {{ range . }}
+                <a href="{{ "tags/" | relLangURL }}{{ . | urlize }}/" class="tag-link">#{{ . }}</a>
+              {{ end }}
+            </span>
+          {{ end }}
+        </div>
+        {{ with .Description }}
+          <div class="post-description">{{ . }}</div>
+        {{ else }}
+          {{ with .Summary }}
+            <div class="post-summary">{{ . }}</div>
+          {{ end }}
+        {{ end }}
+        {{ if eq $.Section "papers" }}
+          <div class="post-actions">
+            <button class="cite-button" data-title="{{ .Title }}" data-authors="{{ .Params.authors | default "Author" }}" data-year="{{ .Date.Format "2006" }}" data-journal="{{ .Params.journal | default "Journal" }}" data-doi="{{ .Params.doi | default "" }}">Cite</button>
+            {{ with .Params.doi }}
+              <a href="https://doi.org/{{ . }}" target="_blank" class="journal-button">View Journal</a>
+            {{ end }}
+          </div>
+        {{ end }}
+      </article>
+    {{ end }}
+  </div>
+  
+  {{ template "_internal/pagination.html" . }}
+{{ end }}

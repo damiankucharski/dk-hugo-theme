@@ -1,0 +1,36 @@
+{{ define "main" }}
+  <article class="page">
+    <header class="page-header">
+      <h1 class="page-title">{{ .Title }}</h1>
+      {{ if not .Date.IsZero }}
+        <div class="page-meta">
+          <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
+            {{ .Date.Format "January 2, 2006" }}
+          </time>
+        </div>
+      {{ end }}
+    </header>
+    
+    <div class="page-content">
+      {{ .Content }}
+    </div>
+    
+    {{ with .Params.tags }}
+      <div class="page-tags">
+        <span>Tags:</span>
+        {{ range . }}
+          <a href="{{ "tags/" | relLangURL }}{{ . | urlize }}/" class="tag-link">#{{ . }}</a>
+        {{ end }}
+      </div>
+    {{ end }}
+    
+    {{ if eq .Section "papers" }}
+      <div class="post-actions">
+        <button class="cite-button" data-title="{{ .Title }}" data-authors="{{ .Params.authors | default "Author" }}" data-year="{{ .Date.Format "2006" }}" data-journal="{{ .Params.journal | default "Journal" }}" data-doi="{{ .Params.doi | default "" }}">Cite</button>
+        {{ with .Params.doi }}
+          <a href="https://doi.org/{{ . }}" target="_blank" class="journal-button">View Journal</a>
+        {{ end }}
+      </div>
+    {{ end }}
+  </article>
+{{ end }}

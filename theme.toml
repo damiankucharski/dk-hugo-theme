@@ -1,0 +1,17 @@
+name = "DK Hugo Theme"
+license = "MIT"
+licenselink = "https://github.com/damiankucharski/dk-hugo-theme/blob/main/LICENSE"
+description = "A clean Hugo theme for personal websites, blogs, and academic portfolios with dark mode and search"
+homepage = "https://github.com/damiankucharski/dk-hugo-theme"
+demosite = "https://damiankucharski.com/"
+tags = ["blog", "personal", "academic", "clean", "responsive", "dark-mode", "portfolio"]
+features = ["responsive", "dark mode", "search", "syntax highlighting", "LaTeX support", "tags"]
+min_version = "0.146.0"
+
+[author]
+  name = "Damian Kucharski"
+  homepage = "https://damiankucharski.com/"
+
+[original]
+  name = "Damian Kucharski"
+  homepage = "https://damiankucharski.com/"

@@ -1,0 +1,76 @@
+baseURL = 'https://example.org/'
+languageCode = 'en-us'
+theme = 'dk-hugo-theme'
+title = "DK Hugo Theme - Example Site"
+
+# Configure output formats
+[outputs]
+home = ["HTML", "RSS", "searchindex"]
+
+[outputFormats.searchindex]
+baseName = "searchindex"
+mediaType = "application/json"
+isPlainText = true
+
+# Disable built-in syntax highlighting (using highlight.js instead)
+[markup]
+[markup.highlight]
+codeFences = false
+noClasses = false
+
+# Enable LaTeX support
+[markup.goldmark.renderer]
+unsafe = true
+
+# Configure table of contents
+[markup.tableOfContents]
+endLevel = 3
+ordered = false
+startLevel = 2
+
+# Configure menu
+[menu]
+[[menu.main]]
+identifier = "home"
+name = "Home"
+url = "/"
+weight = 1
+
+[[menu.main]]
+identifier = "projects"
+name = "Projects"
+url = "/projects/"
+weight = 2
+
+[[menu.main]]
+identifier = "papers"
+name = "Papers"
+url = "/papers/"
+weight = 3
+
+[[menu.main]]
+identifier = "posts"
+name = "Posts"
+url = "/posts/"
+weight = 4
+
+[[menu.main]]
+identifier = "tags"
+name = "Tags"
+url = "/tags/"
+weight = 5
+
+# Configure taxonomies
+[taxonomies]
+category = "categories"
+tag = "tags"
+
+# Theme parameters
+[params]
+author = "Example Author"
+description = "Example site for DK Hugo Theme - A clean theme for personal websites and academic portfolios"
+email = "example@example.com"
+github = "https://github.com/damiankucharski"
+linkedin = "https://www.linkedin.com/in/example/"
+googlescholar = "https://scholar.google.com/"
+orcid = "0000-0000-0000-0000"
