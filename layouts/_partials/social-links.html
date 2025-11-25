@@ -1,0 +1,47 @@
+{{- /*
+Renders social/professional links with icons.
+
+@context {page} . The current page context.
+*/}}
+
+<section class="social-links">
+  <h2>Connect</h2>
+  <div class="social-list">
+    {{- with site.Params.email }}
+      <div class="social-email-row">
+        <span class="email-label">Email:</span>
+        <a href="mailto:{{ . }}" class="email-link">{{ . }}</a>
+      </div>
+    {{- end }}
+
+    <div class="social-icons-grid">
+      {{- with site.Params.github }}
+        <a href="{{ . }}" target="_blank" rel="noopener" class="social-icon-link" title="GitHub Profile">
+          <i class="fa-brands fa-github icon-badge"></i>
+          <span class="icon-label">GitHub</span>
+        </a>
+      {{- end }}
+
+      {{- with site.Params.linkedin }}
+        <a href="{{ . }}" target="_blank" rel="noopener" class="social-icon-link" title="LinkedIn Profile">
+          <i class="fa-brands fa-linkedin icon-badge"></i>
+          <span class="icon-label">LinkedIn</span>
+        </a>
+      {{- end }}
+
+      {{- with site.Params.googlescholar }}
+        <a href="{{ . }}" target="_blank" rel="noopener" class="social-icon-link" title="Google Scholar Profile">
+          <i class="fa-solid fa-graduation-cap icon-badge"></i>
+          <span class="icon-label">Scholar</span>
+        </a>
+      {{- end }}
+
+      {{- with site.Params.orcid }}
+        <a href="https://orcid.org/{{ . }}" target="_blank" rel="noopener" class="social-icon-link" title="ORCID: {{ . }}">
+          <i class="fa-brands fa-orcid icon-badge"></i>
+          <span class="icon-label">ORCID</span>
+        </a>
+      {{- end }}
+    </div>
+  </div>
+</section>

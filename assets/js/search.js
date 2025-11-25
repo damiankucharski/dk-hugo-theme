@@ -103,32 +103,44 @@ document.addEventListener('DOMContentLoaded', function() {
         if (limitedResults.length > 0) {
           limitedResults.forEach(item => {
             const resultElement = document.createElement('div');
-            
+
             // Create excerpt of matching content if available
             let excerpt = '';
             if (item.summary) {
               excerpt = item.summary.substring(0, 100).replace(/(<([^>]+)>)/gi, '') + '...';
             }
-            
+
             // Determine item type based on permalink
             let itemType = 'page';
             if (item.permalink.includes('/posts/')) {
               itemType = 'post';
             } else if (item.permalink.includes('/papers/')) {
               itemType = 'paper';
-            } else if (item.permalink.includes('/snippets/')) {
-              itemType = 'snippet';
             } else if (item.permalink.includes('/projects/')) {
               itemType = 'project';
             }
-            
-            resultElement.innerHTML = `
-              <a href="${item.permalink}">
-                <strong>${item.title || 'Untitled'}</strong>
-                <span class="search-result-type">${itemType}</span>
-                ${excerpt ? `<div class="search-result-excerpt">${excerpt}</div>` : ''}
-              </a>
-            `;
+
+            // Build result element using DOM APIs to prevent XSS
+            const link = document.createElement('a');
+            link.href = item.permalink;
+
+            const title = document.createElement('strong');
+            title.textContent = item.title || 'Untitled';
+            link.appendChild(title);
+
+            const type = document.createElement('span');
+            type.className = 'search-result-type';
+            type.textContent = itemType;
+            link.appendChild(type);
+
+            if (excerpt) {
+              const excerptDiv = document.createElement('div');
+              excerptDiv.className = 'search-result-excerpt';
+              excerptDiv.textContent = excerpt;
+              link.appendChild(excerptDiv);
+            }
+
+            resultElement.appendChild(link);
             searchResults.appendChild(resultElement);
           });
           

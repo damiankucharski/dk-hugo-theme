@@ -1,0 +1,16 @@
+{{- /*
+Renders citation and journal buttons for papers.
+
+@context {page} . The current page context.
+
+@example: {{ partial "paper-actions.html" . }}
+*/}}
+
+{{- if eq .Section "papers" }}
+  <div class="post-actions">
+    <button class="cite-button" data-title="{{ .Title }}" data-authors="{{ .Params.authors | default "Author" }}" data-year="{{ .Date.Format "2006" }}" data-journal="{{ .Params.journal | default "Journal" }}" data-doi="{{ .Params.doi | default "" }}">Cite</button>
+    {{- with .Params.doi }}
+      <a href="https://doi.org/{{ . }}" target="_blank" class="journal-button">View Journal</a>
+    {{- end }}
+  </div>
+{{- end }}

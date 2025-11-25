@@ -763,6 +763,215 @@ img {
   background-color: #264653;
 }
 
+/* Home page styles */
+.home-content {
+  max-width: 100%;
+}
+
+.home-hero {
+  margin-bottom: 3rem;
+  padding: 2rem 0;
+  max-width: 650px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-name {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.hero-title {
+  font-size: 1.25rem;
+  color: var(--text-color);
+  opacity: 0.8;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+.hero-bio {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  text-align: left;
+}
+
+/* Social links section */
+.social-links {
+  margin: 3rem 0;
+  max-width: 650px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.social-links h2 {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.social-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  background-color: var(--blockquote-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+}
+
+/* Email row */
+.social-email-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.email-label {
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.email-link {
+  color: var(--accent-color);
+  text-decoration: none;
+}
+
+.email-link:hover {
+  text-decoration: underline;
+}
+
+/* Social icons grid */
+.social-icons-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 1rem;
+}
+
+.social-icon-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 0.5rem;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background-color var(--transition-time), transform var(--transition-time);
+}
+
+.social-icon-link:hover {
+  background-color: var(--code-bg);
+  transform: translateY(-2px);
+}
+
+.icon-badge {
+  font-size: 2.5rem;
+  color: var(--accent-color);
+  transition: transform var(--transition-time), color var(--transition-time);
+}
+
+.social-icon-link:hover .icon-badge {
+  transform: scale(1.15);
+  color: var(--text-color);
+}
+
+.icon-label {
+  font-size: 0.85rem;
+  color: var(--text-color);
+  font-weight: 500;
+}
+
+/* Recent papers section */
+.home-recent-papers {
+  margin: 4rem 0;
+  max-width: 650px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.home-recent-papers h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.recent-papers-grid {
+  display: grid;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.paper-card {
+  padding: 1.5rem;
+  background-color: var(--blockquote-bg);
+  border-left: 3px solid var(--accent-color);
+  border-radius: 4px;
+  transition: transform var(--transition-time), box-shadow var(--transition-time);
+}
+
+.paper-card:hover {
+  transform: translateX(3px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.paper-card-title {
+  font-size: 1.1rem;
+  margin: 0 0 0.75rem 0;
+  line-height: 1.4;
+}
+
+.paper-card-title a {
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+.paper-card-title a:hover {
+  color: var(--accent-color);
+}
+
+.paper-card-meta {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.85rem;
+  color: var(--text-color);
+  opacity: 0.8;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.paper-journal {
+  font-style: italic;
+}
+
+.paper-card-description {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0;
+  color: var(--text-color);
+  opacity: 0.9;
+}
+
+.view-all-link {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.view-all-link a {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--accent-color);
+  text-decoration: none;
+  transition: color var(--transition-time);
+}
+
+.view-all-link a:hover {
+  color: var(--text-color);
+  text-decoration: underline;
+}
+
 @media (max-width: 600px) {
   .tag-header {
     flex-direction: column;

@@ -140,6 +140,34 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
     
+    // Helper function to extract first author's last name for citation key
+    const getFirstAuthorLastName = (authorString) => {
+      if (!authorString) return 'Unknown';
+
+      // Split by 'and' or comma to get individual authors
+      const firstAuthor = authorString
+        .split(/\s+and\s+|,/i)[0]
+        .trim();
+
+      if (!firstAuthor) return 'Unknown';
+
+      // Handle different name formats:
+      // "First Last" -> "Last"
+      // "Last, First" -> "Last"
+      // "First Middle Last" -> "Last"
+      // "von Last, First" -> "Last" (handles particles like 'van', 'von', 'de')
+
+      if (firstAuthor.includes(',')) {
+        // Format: "Last, First" or "von Last, First"
+        return firstAuthor.split(',')[0].trim().split(' ').pop();
+      } else {
+        // Format: "First Last" or "First Middle Last"
+        // Take the last word as the last name
+        const parts = firstAuthor.split(/\s+/);
+        return parts[parts.length - 1];
+      }
+    };
+
     // Add click event to all cite buttons
     document.querySelectorAll('.cite-button').forEach(button => {
       button.addEventListener('click', () => {
@@ -148,11 +176,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const year = button.getAttribute('data-year');
         const journal = button.getAttribute('data-journal');
         const doi = button.getAttribute('data-doi');
-        
-        // Generate BibTeX citation
-        const authorLastNames = authors.split(',')[0].trim().split(' ').pop();
-        const citationKey = `${authorLastNames}${year}`;
-        
+
+        // Generate BibTeX citation key
+        const authorLastName = getFirstAuthorLastName(authors);
+        const citationKey = `${authorLastName}${year}`;
+
         const bibtex = `@article{${citationKey},
   title = {${title}},
   author = {${authors}},
@@ -160,7 +188,7 @@ document.addEventListener('DOMContentLoaded', () => {
   year = {${year}}${doi ? `,
   doi = {${doi}}` : ''}
 }`;
-        
+
         // Update popup content and show it
         citationText.textContent = bibtex;
         popup.classList.add('active');

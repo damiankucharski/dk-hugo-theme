@@ -1,0 +1,13 @@
+{{- /*
+Renders the hero/intro section for the home page.
+
+@context {page} . The current page context.
+*/}}
+
+<section class="home-hero">
+  <h1 class="hero-name">{{ site.Params.author }}</h1>
+  <p class="hero-title">Data Scientist & Machine Learning Researcher</p>
+  <div class="hero-bio">
+    {{ .Content }}
+  </div>
+</section>

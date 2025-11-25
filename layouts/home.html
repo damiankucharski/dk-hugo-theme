@@ -1,5 +1,38 @@
 {{ define "main" }}
-  <article class="home-content">
-    {{ .Content }}
-  </article>
+  <div class="home-content">
+    {{ partial "home-hero.html" . }}
+
+    {{ partial "social-links.html" . }}
+
+    <section class="home-recent-papers">
+      <h2>Recent Publications</h2>
+      {{ $papers := where site.RegularPages "Section" "papers" }}
+      {{ $recentPapers := first 3 (sort $papers "Date" "desc") }}
+      {{ if $recentPapers }}
+        <div class="recent-papers-grid">
+          {{ range $recentPapers }}
+            <article class="paper-card">
+              <h3 class="paper-card-title">
+                <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+              </h3>
+              <div class="paper-card-meta">
+                <time datetime="{{ .Date.Format "2006-01-02" }}">
+                  {{ .Date.Format "January 2006" }}
+                </time>
+                {{ with .Params.journal }}
+                  <span class="paper-journal">{{ . }}</span>
+                {{ end }}
+              </div>
+              {{ with .Description }}
+                <p class="paper-card-description">{{ . }}</p>
+              {{ end }}
+            </article>
+          {{ end }}
+        </div>
+        <div class="view-all-link">
+          <a href="/papers/">View all publications →</a>
+        </div>
+      {{ end }}
+    </section>
+  </div>
 {{ end }}
